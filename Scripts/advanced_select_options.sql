@@ -93,3 +93,14 @@ SELECT
 
 FROM sales
 GROUP BY employeeId;
+
+select * FROM inventory  
+LIMIT 5;
+
+SELECT SUM(salesAmount) AS TotalElectricSales
+FROM
+(SELECT sales.inventoryId, inventory.modelId, model.EngineType, salesId, salesAmount
+FROM Sales
+JOIN inventory ON sales.inventoryId = inventory.inventoryId
+JOIN model ON inventory.modelId = model.modelId
+WHERE EngineType = 'Electric');
